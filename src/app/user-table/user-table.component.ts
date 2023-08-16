@@ -2,8 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription, map } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
-import { User } from '../models/index';
-import { UserQuery, UserStore } from '../state/index';
+import { User } from '../models';
+import { UserQuery, UserStore } from '../state';
 import { UserFormModalComponent } from '../user-form-modal/user-form-modal.component';
 
 @Component({

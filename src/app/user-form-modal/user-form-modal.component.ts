@@ -2,9 +2,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { AbstractControl, AsyncValidatorFn, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Observable, map } from 'rxjs';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { User } from '../models/index';
-import { UserStore } from '../state/index';
-import { UserService } from '../services/index';
+import { User } from '../models';
+import { UserStore } from '../state';
+import { UserService } from '../services';
 
 @Component({
   selector: 'app-user-form-modal',

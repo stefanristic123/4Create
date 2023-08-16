@@ -1,0 +1,11 @@
+<h3>Plese add new user with unique name</h3>
+<form [formGroup]="userForm" (ngSubmit)="onSubmit();" novalidate>
+  <mat-form-field class="full-width">
+    <input matInput placeholder="Name" formControlName="name">
+    <mat-error *ngIf="userForm.get('name')?.hasError('required')">Name is required</mat-error>
+    <mat-error *ngIf="userForm.get('name')?.hasError('uniqueName')">Name must be unique</mat-error>
+  </mat-form-field>
+  <div>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!userForm.valid">Create</button>
+  </div>
+</form>

@@ -22,7 +22,8 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    "skipLibCheck": true, // having issues with akita needed to add this line of code - https://github.com/salesforce/akita/issues/870
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

@@ -1,20 +1,20 @@
-import { Component } from '@angular/core';
-import { UserQuery } from '../state/query';
-import { User } from '../models/user.model';
-import { UserStore } from '../state/store';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription, map } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
+import { User } from '../models/index';
+import { UserQuery, UserStore } from '../state/index';
 import { UserFormModalComponent } from '../user-form-modal/user-form-modal.component';
-import { map } from 'rxjs';
 
 @Component({
   selector: 'app-user-table',
   templateUrl: './user-table.component.html',
   styleUrls: ['./user-table.component.scss']
 })
-export class UserTableComponent {
+export class UserTableComponent implements OnInit, OnDestroy{
   dataSource = new MatTableDataSource([])
   displayedColumns: string[] = ['id', 'name', 'active'];
+  private getUsersSubscription: Subscription | undefined;
   addUserDisabled$ = this.userQuery.allActiveUsers$.pipe(map(val => !val));
 
   constructor(
@@ -25,7 +25,7 @@ export class UserTableComponent {
   }
 
   ngOnInit(): void {
-    this.userQuery.getUsers().subscribe((data: any) => {
+    this.getUsersSubscription = this.userQuery.getUsers().subscribe((data: any) => {
       this.dataSource = data;
     })
   }
@@ -41,5 +41,11 @@ export class UserTableComponent {
     this.userStore.update(state => ({
       users: state.users.map(u => (u.id === user.id ? updatedUser : u))
     }));
+  }
+
+  ngOnDestroy(){
+    if (this.getUsersSubscription) {
+      this.getUsersSubscription.unsubscribe();
+    }
   }
 }

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
+import { Observable, map } from 'rxjs';
 import { Query } from '@datorama/akita';
 import { UserState, UserStore } from './store';
-import { Observable, map } from 'rxjs';
-import { User } from '../models/user.model';
+import { User } from '../models/index';
 
 @Injectable({ providedIn: 'root' })
 export class UserQuery extends Query<UserState> {

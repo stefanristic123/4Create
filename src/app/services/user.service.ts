@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, map, timer } from 'rxjs';
-import { UserQuery } from '../state/query';
+import { UserQuery } from '../state/index';
 
 @Injectable({
   providedIn: 'root'
